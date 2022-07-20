@@ -9,7 +9,7 @@ SRC := $(wildcard $(SRC_DIR)/*.c)
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CFLAGS := -Iinclude -MMD -MP
-CPPFLAGS := -Wextra #Wall
+CPPFLAGS := -Wall #Wextra
 LDFLAGS := -Llib
 LDLIBS := -lm
 
@@ -26,7 +26,7 @@ $(BIN_DIR) $(OBJ_DIR):
 	mkdir $@
 
 clean:
-	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR) leak_info.txt aes* null.d 
+	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR) leak_info.txt null.d aes*
 	
 rebuild: clean all
 
