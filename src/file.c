@@ -6,12 +6,7 @@
 
 void create_bin_file(unsigned char * output_text) {
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-    char* output_file_name = (char*) malloc(sizeof(char) * (strlen("aes_encrypted_file_windows.bin") + 1));
-    strcpy(output_file_name, "aes_encrypted_file_windows.bin");
-#else // ON LINUX
-	char* output_file_name = get_file_name();
-#endif
+    char* output_file_name = get_file_name();
 
     if(!output_file_name) return;
 
@@ -22,7 +17,10 @@ void create_bin_file(unsigned char * output_text) {
     fclose(output_file);
     
     free(output_file_name);
-}
+}                           
+
+// TODO SHOVE TEXT FILE INTO output/ DIRECTORY. 
+// IF THERES NO output/ DIRECTORY SIMPLY JUMP TO THE ELSE AFTER THE FOR LOOP
 
 char* get_file_name() {
 #if !defined(WIN32) || !defined(_WIN32) || !defined(__WIN32)
