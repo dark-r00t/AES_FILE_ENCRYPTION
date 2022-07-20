@@ -11,7 +11,7 @@ void print_hex_val(unsigned char c) {
 }
 
 void print_hex_val_DEBUG(unsigned char* str) {
-    printf("\n\nHex:\n");
+    printf("\nHex:\n");
     for(int i = 0; i < (int) strlen(str); i++) {
         print_hex_val(str[i]);
         printf(" ");
@@ -92,7 +92,7 @@ int verify(unsigned procedure) {
 }
 
 ssize_t get_hidden_key (char **pw, size_t sz, int mask, FILE *fp) {
-#if !defined(WIN32) || !defined(_WIN32) || !defined(__WIN32)
+
     if (!pw || !sz || !fp) return -1;// validate param inputs
 
     if (*pw == NULL) {
@@ -152,37 +152,10 @@ ssize_t get_hidden_key (char **pw, size_t sz, int mask, FILE *fp) {
                 RED, __func__, sz, CLEAR);
 
     return idx; // number of chars in passwd
-#endif
 }
 
 char * get_key() {
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32)
-    char buffer[AES_128 + 1];
-    char * key = (char * ) malloc(sizeof(char) * (AES_128 + 1));
 
-    printf("Please enter your unique key: ");
-
-    scanf("%32s", buffer);
-    sscanf(buffer, "%s", key);
-
-    char c;
-    while ((c = getchar()) != '\n');
-
-    if (strlen(key) != AES_128) {
-
-        unsigned long size = strlen(key);
-
-        for (unsigned long i = size; i < AES_128; i++) {
-
-            key[i] = key[i - size];
-        }
-    }
-
-    key[AES_128] = '\0';
-
-    return key;
-    
-#else 
     char* key;
     char password[MAXPWDLEN] = {0};
     char *key_string = password;
@@ -218,5 +191,4 @@ char * get_key() {
     key[MAXPWDLEN] = '\0';
 
     return key;
-#endif
 }
