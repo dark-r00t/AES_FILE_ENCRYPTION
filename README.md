@@ -17,3 +17,4 @@
 <br>To decrypt:
 <br>WIP. Not implimented.
 
+make rebuild && ./bin/aes -e input/input1.txt && ./bin/aes -d aes128_encrypted_text000.bin
