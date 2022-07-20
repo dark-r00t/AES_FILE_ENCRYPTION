@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <termios.h>
+#include <dirent.h>
 #include "aes.h"
 #include "file.h"
 #include "general.h"
